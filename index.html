@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>رزومه کاری</title>
+    <meta name="description" content="رزومه کاری - نمونه‌ی زیبا و واکنش‌گرا" />
+
+    <!-- Persian variable font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- QRCode.js (small, widely used) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+      // Generate the QR code pointing to the current page URL
+      document.addEventListener('DOMContentLoaded', function () {
+        var qrContainer = document.getElementById('qr');
+        var qrNote = document.getElementById('qr-note');
+        if (qrContainer && window.QRCode) {
+          var customUrl = (qrContainer.getAttribute('data-qr-url') || '').trim();
+          var qrText = customUrl || window.location.href;
+
+          if (location.protocol === 'file:' && !customUrl && qrNote) {
+            qrNote.textContent = 'برای اسکن با موبایل، این فایل باید روی یک آدرس قابل دسترس (مثلاً GitHub Pages یا IP شبکه محلی) میزبانی شود یا در ویژگی data-qr-url لینک دلخواه را قرار دهید.';
+          }
+
+          new QRCode(qrContainer, {
+            text: qrText,
+            width: 132,
+            height: 132,
+            correctLevel: QRCode.CorrectLevel.M
+          });
+
+          // After QR is injected (as canvas or img), export it as PNG for download
+          setTimeout(function(){
+            var downloadLink = document.getElementById('qr-download');
+            if (!downloadLink) return;
+
+            // QRCode.js may create a canvas or an img; prefer canvas for highest fidelity
+            var canvas = qrContainer.querySelector('canvas');
+            if (canvas && canvas.toDataURL) {
+              downloadLink.href = canvas.toDataURL('image/png');
+              downloadLink.download = 'resume-qr.png';
+              downloadLink.removeAttribute('hidden');
+              return;
+            }
+
+            var img = qrContainer.querySelector('img');
+            if (img && img.src) {
+              downloadLink.href = img.src;
+              downloadLink.download = 'resume-qr.png';
+              downloadLink.removeAttribute('hidden');
+            }
+          }, 50);
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <aside class="sidebar">
+        <section class="profile">
+          <div class="avatar"><img src="profile.jpg" alt="عکس پروفایل" /></div>
+          <h1 class="name">علی آزادی</h1>
+          <div class="role">توسعه‌دهندهٔ بک‌اند</div>
+        </section>
+
+        <section class="contact card">
+          <h2 class="card-title">اطلاعات تماس</h2>
+          <ul class="kv-list">
+            <li><span>ایمیل</span><a href="mailto:shayanazadi967@gmail.com">shayanazadi967@gmail.com</a></li>
+            <li><span>تلفن</span><a href="tel:+989301255415" dir="ltr">+989301255415</a></li>
+            <li><span>شهر</span><span>تهران، ایران</span></li>
+            <li><span>گیت‌هاب</span><a href="https://github.com/yourhandle" target="_blank" rel="noopener">github.com/yourhandle</a></li>
+          </ul>
+        </section>
+
+        <section class="qr card">
+          <h2 class="card-title">باز کردن رزومه با QR</h2>
+          <div id="qr" class="qr-box" aria-label="QR Code" data-qr-url=""></div>
+          <p id="qr-note" class="muted">با دوربین موبایل اسکن کنید تا همین صفحه باز شود.</p>
+          <a id="qr-download" class="muted" href="#" hidden>دانلود تصویر QR</a>
+        </section>
+      </aside>
+
+      <section class="content">
+        <section class="card summary">
+          <h2 class="card-title">خلاصهٔ رزومه</h2>
+          <p>
+            توسعه‌دهندهٔ بک‌اند با تمرکز بر طراحی و پیاده‌سازی RESTful APIs و معماری تمیز؛
+            مسلط به Python، Django، Flask، SQL و PostgreSQL و آشنا با مفاهیم پایهٔ DevOps.
+            مشتاق یادگیری مستمر و بهبود کارایی سامانه‌ها.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">سوابق شغلی</h2>
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title">توسعه‌دهندهٔ بک‌اند — شرکت funzone</div>
+              <div class="item-meta"></div>
+            </div>
+            <ul class="bullets">
+              <li>طراحی فرانت‌اند و بک‌اند اپلیکیشن‌های کافه‌دار و کاربر</li>
+              <li>ساخت و مدیریت دیتابیس</li>
+              <li>نوشتن تست‌ها و اجرای تست‌ها</li>
+            </ul>
+          </div>
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title">توسعه‌دهندهٔ وب — شرکت تهران سنجش</div>
+              <div class="item-meta"></div>
+            </div>
+            <ul class="bullets">
+              <li>طراحی سایت و توسعهٔ فرانت‌اند و بک‌اند</li>
+              <li>طراحی پنل مدیریت برای مدیریت سایت</li>
+              <li>ساخت و مدیریت دیتابیس</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">سوابق شغلی غیر مرتبط</h2>
+          <ul class="bullets">
+            <li>کار در کافه: حس خوب</li>
+            <li>به عنوان ویتر-باریستا</li>
+            <li>از تاریخ تیر 1402 تا کنون</li>
+          </ul>
+        </section>
+
+
+        <section class="grid-2">
+          <section class="card">
+            <h2 class="card-title">سوابق تحصیلی</h2>
+            <div class="item">
+              <div class="item-head">
+                <div class="item-title">دانشگاه سراسری گرمسار — کارشناسی مهندسی صنایع</div>
+                <div class="item-meta">۱۴۰۲ تا کنون</div>
+              </div>
+              <p class="muted">معدل ۱۴</p>
+            </div>
+            <div class="item">
+              <div class="item-head">
+                <div class="item-title">دیپلم — دبیرستان هیئت امنایی دکتر مصاحب</div>
+              </div>
+              <p class="muted">معدل ۱۷/۵</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">مهارت‌ها</h2>
+            <ul class="tags">
+              <li>Python</li>
+              <li>Django</li>
+              <li>Flask</li>
+              <li>PostgreSQL</li>
+              <li>Docker</li>
+              <li>Git</li>
+              <li>REST API</li>
+              <li>HTML/CSS</li>
+              <li>SQL database</li>
+              <li>postman</li>
+              <li>microsoft word</li>
+              <li>microsoft power point</li>
+            </ul>
+            <hr class="divider" />
+            <ul class="tags">
+              <li>باریستا</li>
+              <li>ویتر</li>
+              <li>بارتندر</li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="grid-2">
+          <section class="card">
+            <h2 class="card-title">پروژه‌های منتخب</h2>
+            <div class="item">
+              <div class="item-head">
+                <div class="item-title">اپلیکیشن فان زون</div>
+                <div class="item-meta">
+                  <a href="http://82.115.24.22:5174/" target="_blank" rel="noopener">لینک ۱</a>
+                  ·
+                  <a href="http://82.115.24.22:5173/" target="_blank" rel="noopener">لینک ۲</a>
+                </div>
+              </div>
+              <p>طراحی بک‌اند و فرانت‌اند</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">زبان‌ها</h2>
+            <ul class="kv-list">
+              <li><span>فارسی</span><span>مادری</span></li>
+              <li><span>انگلیسی</span><span>پیشرفته</span></li>
+              <li><span>آلمانی</span><span>مقدماتی</span></li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">گواهی‌نامه‌ها</h2>
+          <ul class="bullets">
+            <li>گواهینامه اتمام زبان انگلیسی (کانون زبان ایران)</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+  </body>
+  </html>
+
+

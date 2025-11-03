@@ -1,0 +1,121 @@
+/* Base */
+:root{
+  --bg:#0b0d10;
+  --panel:#11151b;
+  --soft:#161b22;
+  --text:#e6edf3;
+  --muted:#9aa7b4;
+  --accent:#6ee7b7;
+  --accent-2:#8ab4f8;
+  --border:#232a33;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:radial-gradient(1200px 800px at 80% -20%, rgba(110,231,183,.08), transparent 40%),
+             radial-gradient(900px 700px at -10% 110%, rgba(138,180,248,.08), transparent 35%),
+             var(--bg);
+  color:var(--text);
+  font-family:"Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height:1.75;
+}
+
+/* Layout */
+.page{
+  max-width:1100px;
+  margin-inline:auto;
+  padding:28px 20px 56px;
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:24px;
+}
+
+.sidebar{position:sticky; top:20px; align-self:start}
+
+.content{display:flex; flex-direction:column; gap:24px}
+
+/* Cards */
+.card{
+  background:linear-gradient(180deg, var(--panel), var(--soft));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px 22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.card-title{
+  margin:0 0 12px 0;
+  font-size:1.05rem;
+  font-weight:800;
+  letter-spacing:.2px;
+  color:var(--accent);
+}
+
+/* Profile */
+.profile{ text-align:center; padding:26px 20px; background:transparent }
+.avatar{
+  width:92px; height:92px; border-radius:28px; margin:0 auto 12px;
+  display:grid; place-items:center; font-weight:800; letter-spacing:1px;
+  background:linear-gradient(135deg, rgba(110,231,183,.15), rgba(138,180,248,.15));
+  border:1px solid var(--border); color:var(--text);
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; border-radius:inherit; display:block }
+.name{margin:0; font-size:1.35rem; font-weight:900}
+.role{color:var(--muted); font-weight:500}
+
+/* Lists */
+.kv-list{list-style:none; padding:0; margin:0}
+.kv-list li{display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px dashed rgba(255,255,255,.06)}
+.kv-list li:last-child{border-bottom:0}
+.kv-list a{color:var(--accent-2); text-decoration:none}
+.kv-list a:hover{text-decoration:underline}
+
+.bullets{margin:8px 0 0 0}
+.bullets li{margin:6px 0}
+
+.tags{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px}
+.tags li{
+  padding:6px 10px; border-radius:999px; font-weight:600; font-size:.92rem;
+  background:linear-gradient(180deg, rgba(110,231,183,.12), rgba(138,180,248,.12));
+  border:1px solid var(--border);
+}
+
+/* Divider inside cards */
+.card .divider{ border:0; border-top:1px dashed rgba(255,255,255,.12); margin:12px 0 }
+
+/* Items */
+.item{padding:12px 0}
+.item + .item{border-top:1px dashed rgba(255,255,255,.06)}
+.item-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px}
+.item-title{font-weight:800}
+.item-meta{color:var(--muted); font-size:.92rem}
+.muted{color:var(--muted)}
+
+/* Layout helpers */
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+
+/* QR */
+.qr .qr-box{ width:132px; height:132px; background:var(--panel); border:1px solid var(--border); border-radius:12px; display:grid; place-items:center; margin:10px auto }
+.qr p{ text-align:center; margin:8px 0 0; font-size:.9rem }
+
+/* Summary emphasis */
+.summary p{margin:6px 0 0; font-size:1rem}
+
+/* Responsiveness */
+@media (max-width: 980px){
+  .page{ grid-template-columns: 1fr; }
+  .sidebar{ position:static }
+}
+
+/* Print styling */
+@media print{
+  :root{ --bg:#fff; --panel:#fff; --soft:#fff; --text:#000; --muted:#444; --border:#bbb; --accent:#000; }
+  body{ background:#fff; color:#000 }
+  .page{ max-width:100%; padding:0; gap:12px }
+  .card{ box-shadow:none; border-color:#ccc; border-radius:8px }
+  .qr{ display:none } /* hide QR on print if not needed */
+}
+
+
